@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="col-md-4 offset-md-4">
+      <form class="form-horizontal" action="" method="POST">
+        {{ form.hidden_tag() }}
+        <legend class="text-center">Sign In</legend>
+
+            <div class="form-group {% if form.username.errors %} has-danger {% endif %}">
+              {{ form.username.label(class="col-xs-3 control-label")}}
+              <div>
+                {% if form.username.errors %}
+                  {{ form.username(placeholder="Username", class="form-control is-invalid")}}
+                {% else %}
+                  {{ form.username(placeholder="Username", class="form-control")}}
+                {% endif %}
+                {% for error in form.username.errors %}
+                  <div class="invalid-feedback">{{ error }}</div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="form-group {% if form.password.errors %} has-error {% endif %}">
+              {{ form.password.label(class="col-xs-3 control-label")}}
+              <div>
+                {% if form.password.errors %}
+                  {{ form.password(placeholder="Password", class="form-control is-invalid")}}
+                {% else %}
+                  {{ form.password(placeholder="Password", class="form-control")}}
+                {% endif %}
+                {% for error in form.password.errors %}
+                  <div class="invalid-feedback">{{ error }}</div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="form-group">
+              {{ form.remember_me() }}
+              {{ form.remember_me.label() }}
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <br><br>
+
+            <a class="btn btn-primary btn-block" href="{{ url_for('auth_blueprint.register') }}" role="button">Sign In with Google</a>
+
+            <br><br>
+            <p>New User? <a href="{{ url_for('auth_blueprint.register') }}">Click here to Register</a></p>
+
+      </form>
+
+  </div>
+
+{% endblock content %}
