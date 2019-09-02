@@ -2,12 +2,64 @@
 
 {% block content %}
 
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-        <!-- <div class="container-fluid"> -->
-        <div class="jumbotron">
-            <h1>Yeah!</h1>
-            <p>Handyman service</p>
+        <a class="navbar-brand" href="{{ url_for('index_blueprint.index') }}">HANDYMAN</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('index_blueprint.index') }}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav">
+                {% if current_user.is_anonymous %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth_blueprint.login') }}">Login</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth_blueprint.register') }}">Register</a>
+                    </li>
+
+                {% else %}
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Logged
+                            in as: {{ current_user.username }}</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ url_for('auth_blueprint.logout') }}">Logout</a>
+                            {#                            {% if current_user.is_admin %}#}
+                            {#                                <div class="dropdown-divider"></div>#}
+                            {#                                <a class="dropdown-item" href="{{ url_for('admin.index') }}">Admin page</a>#}
+                            {#                            {% endif %}#}
+                        </div>
+
+                    </li>
+
+                {% endif %}
+
+            </ul>
+
         </div>
+
     </div>
+
+</nav>
+<div class="container">
+    <!-- <div class="container-fluid"> -->
+    <div class="jumbotron">
+        <h1>Yeah!</h1>
+        <p>Handyman service</p>
+    </div>
+</div>
 
 {% endblock content %}

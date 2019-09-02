@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+    <br><br>
   <div class="col-md-4 offset-md-4">
       <form class="form-horizontal" action="" method="POST">
         {{ form.hidden_tag() }}
@@ -41,11 +41,11 @@
             </div>
 
             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-            <br><br>
+            <br>
 
-            <a class="btn btn-primary btn-block" href="{{ url_for('auth_blueprint.register') }}" role="button">Sign In with Google</a>
+            <a class="btn btn-primary btn-block" href="{{ url_for('auth_blueprint.google_login') }}" role="button">Sign In with Google</a>
 
-            <br><br>
+            <br>
             <p>New User? <a href="{{ url_for('auth_blueprint.register') }}">Click here to Register</a></p>
 
       </form>
